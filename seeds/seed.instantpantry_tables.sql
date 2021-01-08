@@ -1,0 +1,33 @@
+BEGIN;
+
+TRUNCATE
+  instantpantry_user,
+  instantpantry_category,
+  instantpantry_item
+  RESTART IDENTITY CASCADE;
+
+INSERT INTO instantpantry_user (username, name, password)
+VALUES
+  ('test', 'name', 'password'),
+  ('doesthiswork', 'reapnsow', 'password'),
+  ('testtest', 'secondname', 'password');
+
+INSERT INTO instantpantry_category (category_title, user_id)
+VALUES
+  ('spices', 1),
+  ('spices', 2),
+  ('herbs', 3);
+
+INSERT INTO instantpantry_item (item_name, amount, image, barcode, category_id)
+VALUES
+  ('paprika', '4 grams', 'image.url', 'UIDEIN', 1),
+  ('rosemary', 'small container', 'image.url', 'UIDEIN1', 2),
+  ('cumin', '2 grams', 'image.url', 'UIDEIN2', 1),
+  ('basil', 'a lot', 'image.url', 'UIDEIN3', 3),
+
+-- id SERIAL PRIMARY KEY,
+--   item_name TEXT NOT NULL,
+--   amount TEXT NOT NULL,
+--   image TEXT,
+--   barcode TEXT,
+--   category_id INTEGER REFERENCES instantpantry_category(id) ON DELETE CASCADE NOT NULL
