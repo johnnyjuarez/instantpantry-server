@@ -24,3 +24,5 @@ VALUES
   ('rosemary', 'small container', 'image.url', 'UIDEIN1', 2),
   ('cumin', '2 grams', 'image.url', 'UIDEIN2', 1),
   ('basil', 'a lot', 'image.url', 'UIDEIN3', 3);
+
+COMMIT;
