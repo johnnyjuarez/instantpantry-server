@@ -23,11 +23,4 @@ VALUES
   ('paprika', '4 grams', 'image.url', 'UIDEIN', 1),
   ('rosemary', 'small container', 'image.url', 'UIDEIN1', 2),
   ('cumin', '2 grams', 'image.url', 'UIDEIN2', 1),
-  ('basil', 'a lot', 'image.url', 'UIDEIN3', 3),
-
--- id SERIAL PRIMARY KEY,
---   item_name TEXT NOT NULL,
---   amount TEXT NOT NULL,
---   image TEXT,
---   barcode TEXT,
---   category_id INTEGER REFERENCES instantpantry_category(id) ON DELETE CASCADE NOT NULL
+  ('basil', 'a lot', 'image.url', 'UIDEIN3', 3);
