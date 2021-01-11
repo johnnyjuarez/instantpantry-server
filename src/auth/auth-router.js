@@ -41,6 +41,9 @@ authRouter.post('/login', jsonBodyParser, (req, res, next) => {
               id: dbUser.id
             });
           });
-      });
+      })
+      .catch(next);
   }
 });
+
+module.exports = authRouter;

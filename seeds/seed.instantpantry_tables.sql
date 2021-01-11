@@ -8,9 +8,9 @@ TRUNCATE
 
 INSERT INTO instantpantry_user (username, name, password)
 VALUES
-  ('test', 'name', 'password'),
-  ('doesthiswork', 'reapnsow', 'password'),
-  ('testtest', 'secondname', 'password');
+  ('test', 'name', '$2a$04$QLem4thNGYMoQ2cVsUKUqOuXrdeElKblSRgVYuXcuydATdMAKkxFG'),
+  ('doesthiswork', 'reapnsow', '$2a$04$QLem4thNGYMoQ2cVsUKUqOuXrdeElKblSRgVYuXcuydATdMAKkxFG'),
+  ('testtest', 'secondname', '$2a$04$QLem4thNGYMoQ2cVsUKUqOuXrdeElKblSRgVYuXcuydATdMAKkxFG');
 
 INSERT INTO instantpantry_category (category_title, user_id)
 VALUES
