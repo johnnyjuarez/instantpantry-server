@@ -7,6 +7,7 @@ const { NODE_ENV } = require('./config');
 
 // Import routes
 const authRouter = require('./auth/auth-router.js');
+const userRouter = require('./user/user-router');
 
 // describe app to use express
 const app = express();
@@ -21,6 +22,7 @@ app.use(cors());
 
 
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
