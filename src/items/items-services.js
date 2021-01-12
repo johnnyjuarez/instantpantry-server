@@ -6,6 +6,13 @@ const ItemsServices = {
       .from('instantpantry_item')
       .select('*')
       .where('instantpantry_item.category_id', categoryId);
+  },
+  insertItems(db, newItem) {
+    return db
+      .insert(newItem)
+      .into('instantpantry_item')
+      .returning('*')
+      .then(([item]) => item);
   }
 };
 
