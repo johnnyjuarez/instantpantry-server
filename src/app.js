@@ -9,6 +9,7 @@ const { NODE_ENV } = require('./config');
 const authRouter = require('./auth/auth-router.js');
 const userRouter = require('./user/user-router');
 const categoryRouter = require('./category/category-router');
+const itemsRouter = require('./items/items-router');
 
 // describe app to use express
 const app = express();
@@ -25,6 +26,7 @@ app.use(cors());
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
+app.use('/api/items', itemsRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
