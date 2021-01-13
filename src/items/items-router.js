@@ -2,6 +2,7 @@ const express = require('express');
 const requireAuth = require('../middleware/jwt-auth');
 const ItemServices = require('./items-services');
 const path = require('path');
+const ItemsServices = require('./items-services');
 const jsonBodyParser = express.json();
 
 const itemsRouter = express.Router();
@@ -16,11 +17,6 @@ itemsRouter
         res.status(200).json(items);
       });
   })
-  // item_name TEXT NOT NULL,
-  // amount TEXT NOT NULL,
-  // image TEXT,
-  // barcode TEXT,
-  // category_id INTEGER REFERENCES instantpantry_category(id) ON DELETE CASCADE NOT NULL
   .post(jsonBodyParser, (req, res, next) => {
     const {item_name, amount, image, barcode} = req.body;
     const {category_id} = req.params;
@@ -30,7 +26,32 @@ itemsRouter
         error: 'Missing item name or amount in request body'
       });
     }
-    ItemServices.insertItems(req.app.get('db'))
+    ItemServices.insertItems(req.app.get('db'), newItem)
+      .then((item) => {
+        res.status(201).location(path.posix.join(req.originalUrl, `/${item.id}`))
+          .json(ItemServices.serializeItem(item));
+      });
+  });
+
+itemsRouter
+  .route('/:category_id/:item_id')
+  .all(requireAuth)
+  .delete((req, res, next)=> {
+    const {item_id} = req.params;
+    ItemsServices.deleteItem(req.app.get('db'), item_id)
+      .then(() => {
+        res.status(204).end();
+      });
+  })
+  .patch(jsonBodyParser, (req, res, next) => {
+    const {item_name, amount} = req.body;
+    const updatedItem = {item_name, amount};
+    const {item_id} = req.params;
+    ItemsServices.updateItem(req.app.get('db'), item_id, updatedItem)
+      .then(() => {
+        return res.status(204).end();
+      })
+      .catch(next);
   });
 
 module.exports = itemsRouter;
