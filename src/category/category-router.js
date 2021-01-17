@@ -18,7 +18,6 @@ categoryRouter
   })
   .post(jsonBodyParser, (req, res, next) => {
     const {name} = req.body;
-    
 
     const userId = req.params.user_id;
     if(!name) {

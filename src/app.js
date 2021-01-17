@@ -29,6 +29,7 @@ app.use('/api/category', categoryRouter);
 app.use('/api/items', itemsRouter);
 
 app.use(function errorHandler(error, req, res, next) {
+  console.log('error hit');
   let response;
   if (NODE_ENV === 'production') {
     response = { error : {mesage : 'server error'}};
