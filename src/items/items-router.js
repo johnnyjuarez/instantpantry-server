@@ -18,10 +18,12 @@ itemsRouter
       });
   })
   .post(jsonBodyParser, (req, res, next) => {
-    const {item_name, amount, image, barcode} = req.body;
-    const {category_id} = req.params;
-    const newItem = {item_name, amount, image, barcode, category_id};
-    if(!item_name || !amount) {
+
+    const { item_name, amount, image, barcode } = req.body;
+    const { category_id } = req.params;
+    const newItem = { item_name, amount, image, barcode, category_id };
+    console.log(newItem);
+    if (!item_name || !amount) {
       return res.status(400).json({
         error: 'Missing item name or amount in request body'
       });
@@ -36,17 +38,17 @@ itemsRouter
 itemsRouter
   .route('/:category_id/:item_id')
   .all(requireAuth)
-  .delete((req, res, next)=> {
-    const {item_id} = req.params;
+  .delete((req, res, next) => {
+    const { item_id } = req.params;
     ItemsServices.deleteItem(req.app.get('db'), item_id)
       .then(() => {
         res.status(204).end();
       });
   })
   .patch(jsonBodyParser, (req, res, next) => {
-    const {item_name, amount} = req.body;
-    const updatedItem = {item_name, amount};
-    const {item_id} = req.params;
+    const { item_name, amount } = req.body;
+    const updatedItem = { item_name, amount };
+    const { item_id } = req.params;
     ItemsServices.updateItem(req.app.get('db'), item_id, updatedItem)
       .then(() => {
         return res.status(204).end();

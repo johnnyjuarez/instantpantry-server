@@ -7,10 +7,10 @@ const path = require('path');
 const userRouter = express.Router();
 
 userRouter.post('/', jsonBodyParser, (req, res, next) => {
-  const {username, name, password} = req.body;
+  const { username, name, password } = req.body;
   // field validation has values
-  for(const field of ['username', 'name', 'password']) {
-    if(!req.body[field]) {
+  for (const field of ['username', 'name', 'password']) {
+    if (!req.body[field]) {
       return res.status(400).json({
         error: `Missing ${field} in request body`,
       });
@@ -19,13 +19,13 @@ userRouter.post('/', jsonBodyParser, (req, res, next) => {
 
   // password validation using services from UsersService
   const passwordError = UserService.getInvalidPasswordMessage(password);
-  if(passwordError){
-    return res.status(400).json({error: passwordError});
+  if (passwordError) {
+    return res.status(400).json({ error: passwordError });
   }
   UserService.hasUserWithUsername(req.app.get('db'), username)
     .then((hasUserWithUsername) => {
-      if(hasUserWithUsername) {
-        return res.status(400).json({error: 'Username already in use'});
+      if (hasUserWithUsername) {
+        return res.status(400).json({ error: 'Username already in use' });
       }
       return UserService.hashPassword(password)
         .then((hashedPassword) => {
@@ -40,7 +40,7 @@ userRouter.post('/', jsonBodyParser, (req, res, next) => {
                 .location(path.posix.join(req.originalUrl, `/${user.id}`))
                 .json(UserService.serializeUser(user));
             });
-          
+
         });
     })
     .catch(next);
