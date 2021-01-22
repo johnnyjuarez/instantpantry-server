@@ -21,7 +21,8 @@ itemsRouter
 
     const { item_name, amount, image, barcode } = req.body;
     const { category_id } = req.params;
-    const newItem = { item_name, amount, image, barcode, category_id };
+    const category_id_join = category_id.replace(/[, ]+/g, '').trim();
+    const newItem = { item_name, amount, image, barcode, category_id: category_id_join };
     console.log(newItem);
     if (!item_name || !amount) {
       return res.status(400).json({
