@@ -31,7 +31,7 @@ authRouter.post('/login', jsonBodyParser, (req, res, next) => {
         .then((passMatch) => {
           if (!passMatch) {
             return res.status(400).json({
-              error: 'Incorrect email or password',
+              error: 'Incorrect username or password',
             });
           }
           // pass dbUser data to create JWT token
