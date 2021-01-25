@@ -34,15 +34,15 @@ POST /api/items - Post an item requiring item_name, and amount, with optional im
 
 PATCH /api/items - Patch an item that takes item_name, and amount values.
 
-DELETE /api/items - Delete an item given the item_id from the params.
+DELETE /api/items - Delete an item given the item_id from the 
 
 
-![](public/images/landingModal.png)
-![](public/images/login.png)
-![](public/images/signup.png)
-![](public/images/dashboard.png)
-![](public/images/itemview.png)
-![](public/images/addcategory.png)
-![](public/images/additemform.png)
-![](public/images/barcodeadditem.png)
-![](public/images/barcodeadditemform.png)
+![](images/landingModal.png)
+![](images/login.png)
+![](images/signup.png)
+![](images/dashboard.png)
+![](images/itemview.png)
+![](images/addcategory.png)
+![](images/additemform.png)
+![](images/barcodeadditem.png)
+![](images/barcodeadditemform.png)
