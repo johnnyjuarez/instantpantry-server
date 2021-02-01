@@ -1,8 +1,8 @@
 const app = require('../src/app');
 const knex = require('knex');
 const AuthService = require('../src/auth/auth-services');
-const { hashPassword } = require('../src/user/user-services');
 const { expect } = require('chai');
+const supertest = require('supertest');
 
 describe('App', () => {
   let db;
@@ -97,6 +97,18 @@ describe('App', () => {
           expect(res.body[0].image).to.eql(testObj.image);
           expect(res.body[0].barcode).to.eql(testObj.barcode);
           expect(res.body[0].category_id).to.eql(testObj.category_id);
+        });
+    });
+    it('responds with 200 on successful login route', () => {
+      const testUser = {
+        username: 'test',
+        password: 'password'
+      };
+      return supertest(app)
+        .post('/api/auth/login')
+        .send(testUser)
+        .expect(res => {
+          expect(res.status).to.eql(200);
         });
     });
   });
